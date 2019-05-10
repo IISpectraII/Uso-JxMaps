@@ -105,9 +105,9 @@ public class VisualizacionMapa extends MapView
 					
 					//Agregar circulos para agrupar puntos
 					Circle circle = new Circle(mapaChicago);
-					circle.setCenter(new LatLng(41.948087, -87.734575));
-					circle.setRadius(250);
-					CircleOptions co= new CircleOptions();
+					circle.setCenter(new LatLng(41.948087, -87.734575)); //Pone la ubicación del circulo, su centro.
+					circle.setRadius(250); //Radio del circulo
+					CircleOptions co= new CircleOptions(); //Caracteristicas del borde del circulo
 					co.setFillColor(COLORES[indiceColor]);
 					co.setFillOpacity(0.5);
 					indiceColor = (indiceColor + 1) % COLORES.length; 
