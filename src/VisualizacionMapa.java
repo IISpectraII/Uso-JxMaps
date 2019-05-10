@@ -3,6 +3,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+import com.teamdev.jxmaps.Circle;
+import com.teamdev.jxmaps.CircleOptions;
 import com.teamdev.jxmaps.LatLng;
 import com.teamdev.jxmaps.Map;
 import com.teamdev.jxmaps.MapOptions;
@@ -74,9 +76,7 @@ public class VisualizacionMapa extends MapView
 					//Poner zoom de vista
 					mapaChicago.setZoom(13.0);					
 
-					//Agregar vertices.
-
-					System.out.println("========= Pintando Vertices =========");
+					//Agregar vertices.					
 
 					//Vertice #1
 					Marker nuevoMarcador = new Marker(mapaChicago);	//Pone el marcador en el mapa						
@@ -86,12 +86,7 @@ public class VisualizacionMapa extends MapView
 					//Vertice #2
 					Marker nuevoMarcador2 = new Marker(mapaChicago);	//Pone el marcador en el mapa						
 					LatLng coordenadas2 = new LatLng(41.933545, -87.663890); //Coordenadas Latitud-longitud
-					nuevoMarcador2.setPosition(coordenadas2); //Configura y guarda la posicion											
-
-					System.out.println("========= Vertices Pintados =========");
-
-
-					System.out.println("========= Pintando Arcos =========");
+					nuevoMarcador2.setPosition(coordenadas2); //Configura y guarda la posicion
 					
 					//Configuracion de la linea
 					indiceColor=0;						
@@ -106,9 +101,37 @@ public class VisualizacionMapa extends MapView
 					nuevoArco.setPath(coordenadas3);	//Configura las coordenadas						
 					detallesArco.setStrokeColor(COLORES[indiceColor]);	//Da algo de color						
 					nuevoArco.setOptions(detallesArco); //Configura la caracteristicas de la instancia de la linea
+					indiceColor = (indiceColor + 1) % COLORES.length; //Incremento (arreglo de colores).					
+					
+					//Agregar circulos para agrupar puntos
+					Circle circle = new Circle(mapaChicago);
+					circle.setCenter(new LatLng(41.948087, -87.734575));
+					circle.setRadius(250);
+					CircleOptions co= new CircleOptions();
+					co.setFillColor(COLORES[indiceColor]);
+					co.setFillOpacity(0.5);
+					indiceColor = (indiceColor + 1) % COLORES.length; 
+					circle.setOptions(co);
+					
+					Polyline nuevoArco2 = new Polyline(mapaChicago); //Configura la linea en el mapa														
+					nuevoArco2.setPath(new LatLng[]{new LatLng(41.938708, -87.721620), new LatLng(41.948087, -87.734575)});	//Configura las coordenadas						
+					detallesArco.setStrokeColor(COLORES[indiceColor]);	//Da algo de color						
+					nuevoArco2.setOptions(detallesArco); //Configura la caracteristicas de la instancia de la linea
 					indiceColor = (indiceColor + 1) % COLORES.length; //Incremento (arreglo de colores).
-					System.out.println("========= Arcos Pintados =========");
-
+					
+					Circle circle2 = new Circle(mapaChicago);
+					circle2.setCenter(new LatLng(41.910899, -87.646585));
+					circle2.setRadius(250);					
+					co.setFillColor(COLORES[indiceColor]);
+					co.setFillOpacity(0.5);
+					indiceColor = (indiceColor + 1) % COLORES.length; 
+					circle2.setOptions(co);
+					
+					Polyline nuevoArco3 = new Polyline(mapaChicago); //Configura la linea en el mapa														
+					nuevoArco3.setPath(new LatLng[]{new LatLng(41.933545, -87.663890), new LatLng(41.910899, -87.646585)});	//Configura las coordenadas						
+					detallesArco.setStrokeColor(COLORES[indiceColor]);	//Da algo de color						
+					nuevoArco3.setOptions(detallesArco); //Configura la caracteristicas de la instancia de la linea
+					indiceColor = (indiceColor + 1) % COLORES.length; //Incremento (arreglo de colores).
 				}				
 			}
 		});
