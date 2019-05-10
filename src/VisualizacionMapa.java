@@ -42,10 +42,7 @@ public class VisualizacionMapa extends MapView
 	// ===========================	
 
 	/**
-	 * Permite construir el mapa para agregar los marcadores y visualizarlo en pantalla.
-	 * @param verticesADibujar Es una cola con los vertices a dibujar en el mapa. Si no se desea dibujar vertice alguno asigne al parametro el valor NULL.
-	 * @param arcosADibujar Es una cola con los arcos a dibujar en el mapa. Si no se desea dibujar arco alguno asigne al parametro el valor NULL.
-	 * @param pFormaPintar. Indica la forma en como deben ser pintadas las cosas. Ponga 1, si desea un solo color en los arcos, sino escriba cualquier numero.
+	 * Permite construir el mapa para agregar los marcadores y visualizarlo en pantalla.	 
 	 */
 
 	public VisualizacionMapa() 
@@ -85,7 +82,8 @@ public class VisualizacionMapa extends MapView
 					Marker nuevoMarcador = new Marker(mapaChicago);	//Pone el marcador en el mapa						
 					LatLng coordenadas = new LatLng(41.938708, -87.721620); //Coordenadas Latitud-longitud
 					nuevoMarcador.setPosition(coordenadas); //Configura y guarda la posicion											
-
+					
+					//Vertice #2
 					Marker nuevoMarcador2 = new Marker(mapaChicago);	//Pone el marcador en el mapa						
 					LatLng coordenadas2 = new LatLng(41.933545, -87.663890); //Coordenadas Latitud-longitud
 					nuevoMarcador2.setPosition(coordenadas2); //Configura y guarda la posicion											
@@ -94,15 +92,17 @@ public class VisualizacionMapa extends MapView
 
 
 					System.out.println("========= Pintando Arcos =========");
+					
+					//Configuracion de la linea
 					indiceColor=0;						
 					PolylineOptions detallesArco = new PolylineOptions(); //Configura el grosor de la linea
 					detallesArco.setStrokeOpacity(1.75);
 					detallesArco.setStrokeWeight(1.5);
 
-					
+					//Coordenadas de la nueva linea (arco)
 					LatLng[] coordenadas3 = {new LatLng(41.938708, -87.721620), new LatLng(41.933545, -87.663890)}; //Coordenadas de los vertices inicio y fin.		
 
-					Polyline nuevoArco = new Polyline(mapaChicago); //Configura la linea														
+					Polyline nuevoArco = new Polyline(mapaChicago); //Configura la linea en el mapa														
 					nuevoArco.setPath(coordenadas3);	//Configura las coordenadas						
 					detallesArco.setStrokeColor(COLORES[indiceColor]);	//Da algo de color						
 					nuevoArco.setOptions(detallesArco); //Configura la caracteristicas de la instancia de la linea
